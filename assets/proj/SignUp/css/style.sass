@@ -1,0 +1,226 @@
+//Variables
+
+$color_0: white
+$color_1: #036db0
+$color_2: #ff5555
+$color_3: #ffbbbb
+$color_4: #05b9ff
+$color_5: #45d100
+$color_6: #3aae00
+$color_7: #3fbe00
+$color_8: #e84d4d
+$color_9: #171435
+$color_10: #261d4c
+$color_11: #69dbf5
+$color_12: #5dcee7
+$color_13: #121947
+$color_14: #fff
+$color_15: #ff5c5b
+$color_16: #1c173d
+$color_17: #10ff8d
+$color_18: #3fadc6
+
+//Mixins
+
+=linearGradient($top, $bottom)
+  background: $top
+  background: -moz-linear-gradient(top,  $top 0%, $bottom 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom))
+  background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: -o-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: -ms-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: linear-gradient(to bottom,  $top 0%,$bottom 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 )
+
+=placeholder()
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+=transition($transition...)
+  -moz-transition:    $transition
+  -o-transition:      $transition
+  -webkit-transition: $transition
+  transition:         $transition
+
+
+html
+  min-height: 100%
+
+body
+  +linearGradient($color_9, $color_10)
+  font-family: 'Open Sans', sans-serif
+  min-height: 100%
+  padding: 0 25px
+
+
+
+.submissionForm
+  box-sizing: border-box
+  margin: auto
+  max-width: 450px
+
+  .formHead
+    +border-radius(1%)
+    color: $color_1
+    font-family: sans-serif
+    overflow: hidden
+    +transition(all 300ms ease)
+    border: none
+    text-align: left
+    background: transparent
+    h1
+      line-height: 0.75em
+      color: $color_12
+      font-family: 'Open Sans', sans-serif
+      font-weight: 400
+      text-transform: uppercase
+      margin: 50px auto 10px
+  .formBody
+    height: 370px
+    padding-top: 15px
+    overflow: visible
+    background: transparent
+  .inputContainer
+    position: relative
+    background: transparent
+    border: 1px solid $color_11
+    +border-radius(0)
+    margin-bottom: 10px
+    overflow: visible
+    .message
+      position: absolute
+      top: 0
+      bottom: 0
+      width: 0
+      margin: 0
+      line-height: 2.5em
+      overflow: hidden
+      color: $color_15
+      background: $color_16
+      text-align: left
+      padding-left: 10px
+      text-transform: uppercase
+    input
+      box-sizing: border-box
+      font-size: 14px
+      line-height: 1em
+      border: none
+      width: 100%
+      max-width: 100%
+      padding: 10px 10px 10px 11px
+      outline: 0 !important
+      color: $color_11
+      font-family: 'Open Sans', sans-serif
+      background: transparent
+    textarea
+      box-sizing: border-box
+      padding: 10px
+      font-size: 14px
+      font-family: sans-serif
+      line-height: 1em
+      border: none
+      width: 100%
+      max-width: 100%
+      margin-bottom: -5px
+    &.success
+      border-color: $color_11
+      &:after
+        position: absolute
+        top: 0
+        content: "\f00c"
+        font-family: "FontAwesome" !important
+        right: -25px
+        color: $color_17
+
+      label
+        border-color: $color_7
+
+      input
+        color: $color_17
+
+      textarea
+        color: $color_17
+    &.error
+      border-color: $color_11
+      .message
+        width: 100%
+        box-sizing: border-box
+
+      &:after
+        color: $color_2
+        position: absolute
+        top: 0
+        content: "\f00d"
+        font-family: 'FontAwesome' !important
+        right: -25px
+
+      label
+        border-color: $color_8
+
+      input
+        color: $color_2
+
+      textarea
+        color: $color_2
+  .submitButton
+    padding: 10px 18px
+    margin-top: 10px
+    float: right
+    width: auto
+    +transition(background 0.2s ease)
+    background: $color_13
+    border: 2px solid $color_11
+    +border-radius(0)
+    text-transform: uppercase
+    color: $color_11
+    font-family: 'Open Sans', sans-serif
+    font-size: 16px
+    &:hover
+      background: $color_4
+      color: $color_14
+      cursor: pointer
+    &.success
+      overflow: hidden
+      .formHead
+        border-color: $color_6
+        background: transparent
+        color: $color_18
+        text-align: center
+        font-size: 1.25em
+        font-family: 'Open Sans', sans-serif
+        font-weight: bold
+
+      .formBody
+        height: 0
+        padding-top: 0
+        padding-bottom: 0
+        form
+          +transition(opacity 0.5s ease)
+          opacity: 0
+
+
+
+.success h1
+  font-weight: bold !important
+  span
+    font-weight: normal
+    font-size: 15px
+
+  input
+    +placeholder
+      color: #69DBF5
+      text-transform: uppercase
+    &.submitButton
+      float: none !important
